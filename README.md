@@ -6,3 +6,4 @@ Dự án: LUMI-CORE (3D Arena Survival Game)
 TIẾN ĐỘ & NHẬT KÝ CÔNG VIỆC
 Tuần 1 (29/01-)
 29/01: Lên ý tưởng cho game, khởi tạo project UNITY, setup github, câu hình .gitignore
+30/1: Cài đặt di chuyển cơ bản cho người chơi
