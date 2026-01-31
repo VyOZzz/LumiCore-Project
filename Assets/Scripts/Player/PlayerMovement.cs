@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
+    public static Transform instance;
+    
     [Header("Data")]
     [SerializeField] private PlayerStats stats;
     private Rigidbody _rb;
@@ -15,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _input = new GameControls();
+        
+        instance = transform;
     }
 
     void OnEnable()
