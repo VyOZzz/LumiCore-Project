@@ -29,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
         Vector2 randomPos =  Random.insideUnitSphere * spawnRadius;
         //2 trục Y của 2D sẽ là trục Z trong 3D
         // cộng thêm vị trí của player để nó luôn sinh ra quanh player
-        Vector3 spawnPos = new Vector3(randomPos.x, 0f, randomPos.y) + PlayerMovement.instance.position;
+        Vector3 spawnPos = new Vector3(randomPos.x, 0f, randomPos.y) + Player.Instance.transform.position;
         //3 tạo quái
         Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
     }

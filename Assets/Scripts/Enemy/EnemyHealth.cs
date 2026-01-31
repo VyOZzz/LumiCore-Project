@@ -20,11 +20,15 @@ public class EnemyHealth : MonoBehaviour
             Die();
         }
     }
-
+    [SerializeField] private GameObject expGemPrefab;
     private void Die()
     {
         Debug.Log($"{name} đã bị tiêu diệt");
         // TODO: Sau này sẽ thêm hiệu ứng nổ, rơi đồ ở đây
+        if (expGemPrefab != null)
+        {
+            Instantiate(expGemPrefab, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
 }
