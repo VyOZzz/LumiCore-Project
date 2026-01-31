@@ -7,3 +7,4 @@ TIẾN ĐỘ & NHẬT KÝ CÔNG VIỆC
 Tuần 1 (29/01-)
 29/01: Lên ý tưởng cho game, khởi tạo project UNITY, setup github, câu hình .gitignore
 30/1: Cài đặt di chuyển cơ bản cho người chơi
+31/1: Cài đặt Camera follow người chơi, tạo viên đạn và auto aim cho đạn, tạo cơ bản enemy
