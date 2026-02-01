@@ -68,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9f5c9ee04f993c74db79de0b4914377d, type: 2}
+  - {fileID: 2100000, guid: 84a50790280261d4a8d7e5cd43666f43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e16f922ff46536049a2c46eb8f1da11a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExperienceGem
+  experienceAmount: 10
