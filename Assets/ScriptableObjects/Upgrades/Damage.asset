@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207976db0481ef24cb562091d142de7c, type: 3}
+  m_Name: Damage
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
+  upgradeName: Weapon Overclock
+  description: "G\u1EE1 b\u1ECF gi\u1EDBi h\u1EA1n an to\xE0n c\u1EE7a ph\u1EA7n
+    c\u1EE9ng. S\xE1t th\u01B0\u01A1ng \u0111\u1EA7u ra t\u0103ng 5dmg"
+  icon: {fileID: 0}
+  upgradeType: 1
+  value: 5
