@@ -15,6 +15,6 @@ MonoBehaviour:
   upgradeName: Weapon Overclock
   description: "G\u1EE1 b\u1ECF gi\u1EDBi h\u1EA1n an to\xE0n c\u1EE7a ph\u1EA7n
     c\u1EE9ng. S\xE1t th\u01B0\u01A1ng \u0111\u1EA7u ra t\u0103ng 5dmg"
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 7a1e6ae4cad201749bfbe5d9e43dd3f2, type: 3}
   upgradeType: 1
   value: 5

@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     [Header("UI References")]
     [SerializeField] private GameObject gameOverPanel;
-
+    [SerializeField] private GameObject levelUpPanel;
     private void Awake()
     {
         if(Instance != null && Instance != this)
@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         PlayerHealth.OnPlayerDeath -= HandlePlayerDeath;
+
     }
     private void HandlePlayerDeath()
     {
@@ -40,10 +41,20 @@ public class GameManager : MonoBehaviour
             gameOverPanel.SetActive(true);
         }
     }
-
     public void RestartGame()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void CloseLevelUpPanel()
+    {
+        if(levelUpPanel != null) levelUpPanel.SetActive(false);
+        Time.timeScale = 1f;
+    }
+    public void OpenLevelUpPanel()
+    {
+        if(levelUpPanel != null) levelUpPanel.SetActive(true);
+        Time.timeScale = 0f;
     }
 }

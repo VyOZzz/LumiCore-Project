@@ -21,9 +21,9 @@ public class UpgradeUI : MonoBehaviour
         _data = data;
 
         // 1. Hiển thị thông tin
-        iconImage.sprite = data.icon;
-        nameText.text = data.upgradeName;
-        descText.text = data.description;
+        if(iconImage) iconImage.sprite = data.icon;
+        if(nameText) nameText.text = data.upgradeName;
+        if(descText) descText.text = data.description;
 
         // 2. 👉 TỰ ĐỘNG CHỌN MÀU THEO LOẠI (TYPE)
         Color typeColor = GetColorByType(data.upgradeType);
@@ -55,6 +55,10 @@ public class UpgradeUI : MonoBehaviour
             case UpgradeType.MaxHealth:
                 return new Color(0.3f, 1f, 0.4f); // Xanh lá (Green) - Hồi máu
             case UpgradeType.AttackSpeed:
+                return new Color(1f, 0.4f, 1f);
+            case UpgradeType.JumpHigh:
+                return new Color(1f, 0.4f, 1f);
+            case UpgradeType.Shield:
                 return new Color(1f, 0.4f, 1f);
             default:
                 return Color.white; // Mặc định màu trắng

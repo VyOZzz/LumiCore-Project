@@ -9,7 +9,6 @@ public enum UpgradeType
     Damage,
     MaxHealth,
     AttackSpeed,
-    BananaWeapon,
     Shield,
     JumpHigh,
 }
