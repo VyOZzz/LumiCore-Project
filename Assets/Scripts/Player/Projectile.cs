@@ -1,7 +1,6 @@
 using System.Collections;
 using Manager;
 using UnityEngine;
-using UnityEngine.Pool;
 
 public class Projectile : MonoBehaviour, IPooledObject
 {
@@ -10,84 +9,103 @@ public class Projectile : MonoBehaviour, IPooledObject
     [SerializeField] private float lifeTime = 3f;
     [SerializeField] private int damage = 10;
     
-    private Rigidbody _rb;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Coroutine _returnCoroutine;
+    private bool _hasHit;
+    
     void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
+        // Set layer to PlayerProjectile để tránh va chạm với Player
+        int layer = LayerMask.NameToLayer("PlayerProjectile");
+        if (layer != -1)
+        {
+            gameObject.layer = layer;
+        }
+        
+        // Nếu có Rigidbody, set kinematic để không bị physics can thiệp
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = true;
+            rb.useGravity = false;
+        }
     }
 
-   
+    void Update()
+    {
+        transform.position += transform.forward * (speed * Time.deltaTime);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Viên đạn vừa chạm vào: " + other.name);
+        // CHỈ xử lý va chạm với Enemy, BỎ QUA tất cả thứ khác
+        if (_hasHit) return;
+        
+        // Kiểm tra xem có phải Enemy không
         if (other.TryGetComponent(out EnemyHealth enemy))
         {
+            _hasHit = true;
+            ObjectPooling.Instance.SpawnFromPool("VFX_ProjectileHit", transform.position, Quaternion.identity);
+            
             enemy.TakeDamage(damage);
+            Debug.Log($"[Projectile] Trúng Enemy: {other.name}");
+            ReturnToPool();
         }
-
-        ReturnToPool();
+        // Nếu không phải Enemy thì KHÔNG làm gì cả (bỏ qua Player)
     }
 
     public void IncreaseDamage(int amount)
     {
         damage += amount;
-        Debug.Log("Projectile damage increased by " + amount + ". New damage: " + damage);
     }
+    
     public void IncreaseSpeedAttack(int amount)
     {
         speed += amount;
-        Debug.Log("Projectile damage increased by " + amount + ". New damage: " + damage);
     }
 
-    [Header("Pooling")]
-    private Coroutine returnCoroutine;
     #region IPooledObject Implementation
     
     public void OnObjectSpawn()
     {
-        //Reset velocity when respawned
-        if (_rb != null)
+        // Reset flag
+        _hasHit = false;
+        
+        // Stop coroutine cũ nếu có
+        if (_returnCoroutine != null)
         {
-            _rb.linearVelocity = Vector3.zero;
-            _rb.angularVelocity = Vector3.zero;
-            _rb.Sleep(); // Cho ngủ 1 cái để ngắt hết quán tính cũ
-            _rb.WakeUp(); // Đánh thức dậy
-            _rb.linearVelocity = transform.forward * speed;
-            
+            StopCoroutine(_returnCoroutine);
         }
-        //Stop previous return coroutine if exists
-        if (returnCoroutine != null)
-        {
-            StopCoroutine(returnCoroutine);
-        }
-
-        returnCoroutine = StartCoroutine(ReturnToPoolAfterTime(lifeTime));
+        
+        // Start coroutine mới để tự động return sau lifeTime
+        _returnCoroutine = StartCoroutine(ReturnToPoolAfterTime(lifeTime));
+        
+        Debug.Log($"[Projectile] Spawned tại {transform.position}, hướng {transform.forward}");
     }
-
     
     #endregion
-    private IEnumerator ReturnToPoolAfterTime(float f)
+
+    private IEnumerator ReturnToPoolAfterTime(float time)
     {
-        yield return new WaitForSeconds(f);
+        yield return new WaitForSeconds(time);
         ReturnToPool();
     }
 
     private void ReturnToPool()
     {
-        if(ObjectPooling.Instance == null)
+        if (ObjectPooling.Instance == null)
         {
             Destroy(gameObject);
             return;
         }
         
-        // Reset physics before returning to pool
-        if (_rb != null)
+        // Stop coroutine nếu đang chạy
+        if (_returnCoroutine != null)
         {
-            _rb.linearVelocity = Vector3.zero;
-            _rb.angularVelocity = Vector3.zero;
+            StopCoroutine(_returnCoroutine);
+            _returnCoroutine = null;
         }
         
+        // Return về pool
         ObjectPooling.Instance.ReturnToPool(gameObject);
     }
 }
