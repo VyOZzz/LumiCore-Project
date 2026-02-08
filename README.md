@@ -37,3 +37,18 @@ Level System: Xây dựng logic quản lý kinh nghiệm (EXP) và lên cấp (L
 User Interface (UI): Thiết kế và lập trình thanh máu (Health Bar), thanh kinh nghiệm (EXP Bar) cơ bản.
 
 Assets: Import và xử lý các assets đồ họa (Sprites) cho nhân vật và môi trường.
+
+BÁO CÁO TIẾN ĐỘ TUẦN 2 (02/02/2026 - 08/02/2026)
+- Cơ chế LevelUp:
+    Tạo levelup panel và card cho các loại nâng cấp:
+        Tăng speed, Tăng damage, tăng hp
+    Gép UI cho các card và level up panel
+- Implement ObjectPooling.cs với Generic Dictionary-Queue architecture
+- Tạo interface IPooledObject với method OnObjectSpawn()
+- Refactor 4 class để dùng pooling:
+    Projectile.cs - Viên đạn player
+    EnemyHealth.cs - Enemy respawn system
+    WeaponController.cs - Weapon spawn logic
+    EnemySpawner.cs - Enemy spawn management
+- Tạo VFX prefab cho EnemyDeath, LevelUp, ProjectileHit
+
