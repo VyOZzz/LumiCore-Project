@@ -12,7 +12,7 @@ public class ExperienceGem : MonoBehaviour
             {
                 LevelManger.Instance.AddExp(experienceAmount);
             }
-            Destroy(gameObject);
+            ObjectPooling.Instance.ReturnToPool(gameObject);
         }
     }
 }

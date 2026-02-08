@@ -1,6 +1,7 @@
+using Manager;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour, IPooledObject
 {
     [Header("Settings")]
     [SerializeField] private int maxHealth = 30;
@@ -20,15 +21,19 @@ public class EnemyHealth : MonoBehaviour
             Die();
         }
     }
-    [SerializeField] private GameObject expGemPrefab;
     private void Die()
     {
         Debug.Log($"{name} đã bị tiêu diệt");
         // TODO: Sau này sẽ thêm hiệu ứng nổ, rơi đồ ở đây
-        if (expGemPrefab != null)
-        {
-            Instantiate(expGemPrefab, transform.position, Quaternion.identity);
-        }
-        Destroy(gameObject);
+        ObjectPooling.Instance.SpawnFromPool("VFX_EnemyDeath", transform.position, Quaternion.identity);
+        
+        ObjectPooling.Instance.SpawnFromPool("ExpGem", transform.position, transform.rotation);
+        ObjectPooling.Instance.ReturnToPool(gameObject);
+    }
+
+    public void OnObjectSpawn()
+    {
+        
+        _currentHealth = maxHealth;
     }
 }

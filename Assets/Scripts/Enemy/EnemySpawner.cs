@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
         // cộng thêm vị trí của player để nó luôn sinh ra quanh player
         Vector3 spawnPos = new Vector3(randomPos.x, 0f, randomPos.y) + Player.Instance.transform.position;
         //3 tạo quái
-        Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+        ObjectPooling.Instance.SpawnFromPool("Enemy_Dummy", spawnPos, Quaternion.identity);
     }
     private void OnDrawGizmos()
     {
