@@ -44,8 +44,10 @@ public class Projectile : MonoBehaviour, IPooledObject
         if (other.TryGetComponent(out EnemyHealth enemy))
         {
             _hasHit = true;
-            ObjectPooling.Instance.SpawnFromPool("VFX_ProjectileHit", transform.position, Quaternion.identity);
-            
+            if (enemy.GetCurrentHealth - damage > 0)
+            {
+                ObjectPooling.Instance.SpawnFromPool("VFX_ProjectileHit", transform.position, Quaternion.identity);
+            }
             enemy.TakeDamage(damage);
             Debug.Log($"[Projectile] Trúng Enemy: {other.name}");
             ReturnToPool();

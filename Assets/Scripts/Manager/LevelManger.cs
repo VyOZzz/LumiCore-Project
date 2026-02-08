@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -51,7 +52,10 @@ public class LevelManger : MonoBehaviour
         Debug.Log($"Chúc mừng! Bạn đã lên cấp {currentLevel}!");
         ObjectPooling.Instance.SpawnFromPool("VFX_LevelUp", Player.Instance.transform.position, Quaternion.identity);
         // TODO: Pause Game & Show Upgrade Panel
-        OnPlayerLevelUp?.Invoke();
+        DOVirtual.DelayedCall(1f, () => 
+        {
+            OnPlayerLevelUp?.Invoke(); 
+        });
     }
 
     private void UpdateUI()

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class UpdateManager : MonoBehaviour
@@ -25,6 +26,7 @@ public class UpdateManager : MonoBehaviour
 
     private void ShowUpgradeOptions()
     {
+        
         Debug.Log("Showing upgrade options");
         // hiện  panel level up
         if (GameManager.Instance != null)

@@ -6,6 +6,7 @@ public class EnemyHealth : MonoBehaviour, IPooledObject
     [Header("Settings")]
     [SerializeField] private int maxHealth = 30;
     private int _currentHealth;
+    public int GetCurrentHealth => _currentHealth;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
