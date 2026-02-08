@@ -15,6 +15,6 @@ MonoBehaviour:
   upgradeName: Titanium Plating
   description: "Gia c\u1ED1 khung x\u01B0\u01A1ng b\u1EB1ng h\u1EE3p kim Titan si\xEAu
     nh\u1EB9. M\xE1u t\u1ED1i \u0111a +10."
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 8532f6b53a7198e45b3da7573d9ad72c, type: 3}
   upgradeType: 2
   value: 10

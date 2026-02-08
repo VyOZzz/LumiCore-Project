@@ -1,6 +1,7 @@
+using Manager;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : MonoBehaviour, IPooledObject
 {
     [Header("Settings")]
     [SerializeField] private float speed = 20f;
@@ -31,5 +32,21 @@ public class Projectile : MonoBehaviour
         //     // Va vào tường cũng hủy
         //     Destroy(gameObject);
         // }
+    }
+
+    public void IncreaseDamage(int amount)
+    {
+        damage += amount;
+        Debug.Log("Projectile damage increased by " + amount + ". New damage: " + damage);
+    }
+    public void IncreaseSpeedAttack(int amount)
+    {
+        speed += amount;
+        Debug.Log("Projectile damage increased by " + amount + ". New damage: " + damage);
+    }
+
+    public void OnObjectSpawn()
+    {
+        
     }
 }

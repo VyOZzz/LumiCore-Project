@@ -16,5 +16,5 @@ MonoBehaviour:
   description: "Trang b\u1ECB \u0111\u1ED9ng c\u01A1 \u0111\u1EA9y mini d\u01B0\u1EDBi
     \u0111\u1EBF gi\xE0y. T\u0103ng kh\u1EA3 n\u0103ng b\u1EADt nh\u1EA3y cao h\u01A1n."
   icon: {fileID: 0}
-  upgradeType: 0
+  upgradeType: 5
   value: 20

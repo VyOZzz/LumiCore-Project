@@ -16,6 +16,6 @@ MonoBehaviour:
   description: "K\xEDch ho\u1EA1t tr\u01B0\u1EDDng l\u1EF1c b\u1EA3o v\u1EC7 xung
     quanh, ch\u1EB7n s\xE1t th\u01B0\u01A1ng t\u1EEB k\u1EBB \u0111\u1ECBch va ch\u1EA1m
     m\u1ED7i 10s."
-  icon: {fileID: 0}
-  upgradeType: 5
+  icon: {fileID: 21300000, guid: 7c928c5950634ca45b5710d68e11c18b, type: 3}
+  upgradeType: 4
   value: 10

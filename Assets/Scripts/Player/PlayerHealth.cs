@@ -43,4 +43,16 @@ public class PlayerHealth : MonoBehaviour
         gameObject.SetActive(false);
         
     }
+
+    public void IncreaseMaxHealth(int amount)
+    {
+        _maxHealth += amount;
+        _currentHealth += amount;
+        if (healthSlider != null)
+        {
+            healthSlider.maxValue = _maxHealth;
+            healthSlider.value = _currentHealth;
+        }
+        Debug.Log("Max Health increased by " + amount + ". New Max Health: " + _maxHealth);
+    }
 }

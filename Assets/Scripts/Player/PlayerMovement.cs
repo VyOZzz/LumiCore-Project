@@ -54,5 +54,11 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, stats.rotateSpeed * Time.fixedDeltaTime);
         }
     }
-  
+
+    public void IncreaseSpeed(int amount)
+    {
+        stats.moveSpeed += amount;
+        Debug.Log("Move Speed increased by " + amount + ". New Move Speed: " + stats.moveSpeed);
+    }
+    
 }

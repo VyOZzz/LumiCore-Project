@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -5,6 +6,7 @@ using UnityEngine.UI;
 
 public class LevelManger : MonoBehaviour
 {
+    public static event Action OnPlayerLevelUp;
     public static LevelManger Instance { get; private set; }
 
     [Header("UI References")] 
@@ -49,6 +51,7 @@ public class LevelManger : MonoBehaviour
         Debug.Log($"Chúc mừng! Bạn đã lên cấp {currentLevel}!");
         
         // TODO: Pause Game & Show Upgrade Panel
+        OnPlayerLevelUp?.Invoke();
     }
 
     private void UpdateUI()
