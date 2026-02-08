@@ -1142,7 +1142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponController
   firePoint: {fileID: 415089494}
-  fireRate: 0.2
+  fireRate: 0.1
   range: 7
 --- !u!1 &542784283
 GameObject:
@@ -2259,6 +2259,15 @@ MonoBehaviour:
   - tag: ExpGem
     prefab: {fileID: 5607505129240453365, guid: 4d877069ce42bd844816c55c556adcf0, type: 3}
     initialSize: 40
+  - tag: VFX_EnemyDeath
+    prefab: {fileID: 5732061107516740751, guid: 90ad85f2c890b4d49b46c8811d9baa3f, type: 3}
+    initialSize: 50
+  - tag: VFX_LevelUp
+    prefab: {fileID: 7893488075672932559, guid: b5d97d6826c7e479eb15576585a2c0ca, type: 3}
+    initialSize: 10
+  - tag: VFX_ProjectileHit
+    prefab: {fileID: 3360489302860803266, guid: 3e7ede8a6df9740a09ca63efbcf1b854, type: 3}
+    initialSize: 100
 --- !u!1 &1639972487
 GameObject:
   m_ObjectHideFlags: 0
