@@ -4,7 +4,6 @@ using UnityEngine.Rendering.Universal;
 public class WeaponController : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameObject projecttilePrefab;
     [SerializeField] private Transform firePoint;
     
     [Header("Stats")]
@@ -13,9 +12,8 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private float range = 10f;
     
     private float _fireTimer;
-
     private Transform _target;
-
+    private readonly Collider[] _hitBuffer = new Collider[100];
     // Update is called once per frame
     void Update()
     {
@@ -30,30 +28,39 @@ public class WeaponController : MonoBehaviour
 
     private void Shoot()
     {
-        if(firePoint == null || projecttilePrefab == null) return;
+        if(firePoint == null) return;
         
         // 1 Tính hướng bắn
         Vector3 direction = (_target.position - firePoint.position).normalized;
         // 2. Xoay họng súng về phía quái
         transform.forward = direction;
-        // 3. Tạo viên đạn
-        GameObject projectile = Instantiate(projecttilePrefab, firePoint.position, Quaternion.LookRotation(direction));
+        // 3. Tạo viên đạn với rotation đúng hướng
+        GameObject projectile = ObjectPooling.Instance.SpawnFromPool("Projectile", firePoint.position, Quaternion.LookRotation(direction));
+        
+        if (projectile == null)
+        {
+            Debug.LogWarning("Failed to spawn projectile from pool.");
+        }
+        else
+        {
+            Debug.Log($"Shoot direction: {direction}, Target: {_target.name}");
+        }
     }
 
     private void FindNearestEnemy()
     {
-        Collider[] hits = Physics.OverlapSphere(transform.position, range);
+        int hitCount = Physics.OverlapSphereNonAlloc(transform.position, range, _hitBuffer);
         Transform nearest = null;
         float minDistance = Mathf.Infinity;
-        foreach (var hit in hits)
+        for (int i = 0; i < hitCount; i++)
         {
-            if (hit.TryGetComponent(out EnemyHealth enemy))
+            if(_hitBuffer[i].TryGetComponent(out EnemyHealth _))
             {
-                float distance = Vector3.Distance(transform.position, hit.transform.position);
+                float distance = Vector3.Distance(transform.position, _hitBuffer[i].transform.position);
                 if (distance < minDistance)
                 {
                     minDistance = distance;
-                    nearest = hit.transform;
+                    nearest = _hitBuffer[i].transform;
                 }
             }
         }

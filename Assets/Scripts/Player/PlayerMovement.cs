@@ -20,12 +20,12 @@ public class PlayerMovement : MonoBehaviour
 
     void OnEnable()
     {
-        _input.GamePlay.Enable();
+        _input?.GamePlay.Enable();
     }
 
     void OnDisable()
     {
-        _input.GamePlay.Disable();
+        _input?.GamePlay.Disable();
     }
    
     // Update is called once per frame
