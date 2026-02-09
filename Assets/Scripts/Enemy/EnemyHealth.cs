@@ -26,6 +26,7 @@ public class EnemyHealth : MonoBehaviour, IPooledObject
     {
         Debug.Log($"{name} đã bị tiêu diệt");
         // TODO: Sau này sẽ thêm hiệu ứng nổ, rơi đồ ở đây
+        AudioManager.Instance.PlaySFX(SFXType.EnemyDeath);
         ObjectPooling.Instance.SpawnFromPool("VFX_EnemyDeath", transform.position, Quaternion.identity);
         
         ObjectPooling.Instance.SpawnFromPool("ExpGem", transform.position, transform.rotation);

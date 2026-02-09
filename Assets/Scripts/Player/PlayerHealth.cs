@@ -39,7 +39,9 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Người chơi đã chết");
+        AudioManager.Instance.PlaySFX(SFXType.PlayerDeath);
         OnPlayerDeath?.Invoke();
+        
         gameObject.SetActive(false);
         
     }

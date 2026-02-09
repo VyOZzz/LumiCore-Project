@@ -37,6 +37,7 @@ public class WeaponController : MonoBehaviour
         // 3. Tạo viên đạn với rotation đúng hướng
         GameObject projectile = ObjectPooling.Instance.SpawnFromPool("Projectile", firePoint.position, Quaternion.LookRotation(direction));
         
+        AudioManager.Instance.PlaySFX(SFXType.Shoot);
         if (projectile == null)
         {
             Debug.LogWarning("Failed to spawn projectile from pool.");

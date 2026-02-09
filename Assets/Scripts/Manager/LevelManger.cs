@@ -52,6 +52,7 @@ public class LevelManger : MonoBehaviour
         Debug.Log($"Chúc mừng! Bạn đã lên cấp {currentLevel}!");
         ObjectPooling.Instance.SpawnFromPool("VFX_LevelUp", Player.Instance.transform.position, Quaternion.identity);
         // TODO: Pause Game & Show Upgrade Panel
+        AudioManager.Instance.PlaySFX(SFXType.LevelUp);
         DOVirtual.DelayedCall(1f, () => 
         {
             OnPlayerLevelUp?.Invoke(); 

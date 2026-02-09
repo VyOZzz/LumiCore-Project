@@ -49,6 +49,7 @@ public class Projectile : MonoBehaviour, IPooledObject
                 ObjectPooling.Instance.SpawnFromPool("VFX_ProjectileHit", transform.position, Quaternion.identity);
             }
             enemy.TakeDamage(damage);
+            AudioManager.Instance.PlaySFX(SFXType.Hit);
             Debug.Log($"[Projectile] Trúng Enemy: {other.name}");
             ReturnToPool();
         }
