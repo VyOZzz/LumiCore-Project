@@ -43,12 +43,18 @@ public class GameManager : MonoBehaviour
     }
     public void RestartGame()
     {
+        // Phát âm thanh khi bấm nút Restart
+        AudioManager.Instance?.PlaySFX(SFXType.ButtonClick);
+        
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void CloseLevelUpPanel()
     {
+        // Phát âm thanh khi đóng panel
+        AudioManager.Instance?.PlaySFX(SFXType.ButtonClick);
+        
         if(levelUpPanel != null) levelUpPanel.SetActive(false);
         Time.timeScale = 1f;
     }

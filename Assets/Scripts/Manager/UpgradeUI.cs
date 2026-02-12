@@ -38,7 +38,13 @@ public class UpgradeUI : MonoBehaviour
 
         // 3. Gắn sự kiện nút bấm (Giữ nguyên)
         GetComponent<Button>().onClick.RemoveAllListeners();
-        GetComponent<Button>().onClick.AddListener(() => onSelected?.Invoke(_data));
+        GetComponent<Button>().onClick.AddListener(() => 
+        {
+            // Phát âm thanh khi click vào nút upgrade
+            AudioManager.Instance?.PlaySFX(SFXType.ButtonClick);
+            
+            onSelected?.Invoke(_data);
+        });
     }
 
     // --- BẢNG MÀU QUY ĐỊNH Ở ĐÂY ---
